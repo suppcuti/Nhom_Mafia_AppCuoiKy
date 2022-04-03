@@ -4,7 +4,7 @@ import  Header  from './Class/Header';
 import TodoItems from "./Class/TodoItems";
 import AddTodo from "./Class/Addtodo";
 import Sanbox from "./Class/sanbox";
-
+import generateColor from "./Class/RandomColor";
 
 export default function App() {
     const  [todos,setTodos] = useState([
@@ -18,6 +18,10 @@ const Press = (key) =>{
       return prevTodos.filter(todo => todo.key !=key);
   });
 }
+
+let Rcolor= 'white';
+const generateRColor = () => generateColor() ;
+
 
 const submit =(text) =>{  
   if(text.length >2) {
@@ -41,8 +45,12 @@ const submit =(text) =>{
     //<Sanbox/>
     <TouchableWithoutFeedback onPress={() =>{
       Keyboard.dismiss();
-      console.log('Tat Ban Phim')
-    }}>
+    }}
+    onPressIn={() => {
+      generateRColor();
+      console.log(generateColor());
+    }}
+    >
     <View style={styles.container}>
       <Header/>
         <View style={styles.conten}>
@@ -66,7 +74,7 @@ const submit =(text) =>{
 const styles=  StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#ddd',
+      backgroundColor: '#ddd3' ,
     },
     conten:{
       flex:1,

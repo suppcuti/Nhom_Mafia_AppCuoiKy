@@ -187,6 +187,7 @@ android {
         }
     }
 }
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])

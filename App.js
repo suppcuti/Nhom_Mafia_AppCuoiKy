@@ -74,7 +74,7 @@ const submit =(text) =>{
 const styles=  StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#ddd3' ,
+      backgroundColor: generateColor() ,
     },
     conten:{
       flex:1,

@@ -1,87 +1,104 @@
-import React,{useState}  from "react";
-import {Text, View, StyleSheet, FlatList, Alert, TouchableWithoutFeedback,Keyboard } from "react-native";
-import  Header  from './Class/Header';
-import TodoItems from "./Class/TodoItems";
-import AddTodo from "./Class/Addtodo";
-import Sanbox from "./Class/sanbox";
-import generateColor from "./Class/RandomColor";
-
-export default function App() {
-    const  [todos,setTodos] = useState([
-      {text: "Test 1 ", key: '1'},
-      {text: "Test 2 ", key: '2'},
-      {text: "Test 3 ", key: '3'},
-    ]);
-
-const Press = (key) =>{
-  setTodos((prevTodos) =>{
-      return prevTodos.filter(todo => todo.key !=key);
-  });
-}
-
-let Rcolor= 'white';
-const generateRColor = () => generateColor() ;
+import React from 'react';
+import { View, Text, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import TodoList from './TodoList';
+import LottieView from 'lottie-react-native';
+import CatImg from './CatImg';
 
 
-const submit =(text) =>{  
-  if(text.length >2) {
-    setTodos((prevTodos) =>{
-      return[
-        {text: text, key: Math.random().toString()},
-        ...prevTodos
-      ]
-    });
-  } else {
-    Alert.alert('Haiz', 'Luoi du vay 1 viec can lam phai nhieu hon 2 chu cai chu',[
-      {text: 'Hieu Roi', onPress:() =>console.log('Alert Closed')}
-    ])
-  }
-
-  
-}
 
 
+function DetailsScreen() {
   return (
-    //<Sanbox/>
-    <TouchableWithoutFeedback onPress={() =>{
-      Keyboard.dismiss();
-    }}
-    onPressIn={() => {
-      generateRColor();
-      console.log(generateColor());
-    }}
-    >
-    <View style={styles.container}>
-      <Header/>
-        <View style={styles.conten}>
-      <AddTodo submit={submit} />
-       <View style={styles.list}>
-          <FlatList
-            data={todos}
-            renderItem={ ({item}) => (
-              <TodoItems item={item} Press={Press} />
-            )}
-          /> 
-        </View>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Nhom Mafia </Text>
+    </View>
+  );
+}
 
-      </View>
+function SplashScreen({navigation}) {
+  return(
+    <View >
+
+      <LottieView   style={{
+      width: 460, 
+      aspectRatio: 370 / 667,
+      flexGrow: 1, 
+      alignSelf: 'center',
+    }}
+      resizeMode='cover'
+      source={require('./assets/lf20_Z5qhQy.json')} 
+      autoPlay 
+      loop ={false}
+      onAnimationFinish = {() => navigation.navigate('Home')}
+      speed ={2}
+      />
 
     </View>
-  </TouchableWithoutFeedback>
   )
 }
 
-const styles=  StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: generateColor() ,
-    },
-    conten:{
-      flex:1,
-      padding: 40,
-    },
-    list:{
-      flex:1,
-      marginTop: 20,
-    },
-});
+function HomeScreen({ navigation }) {
+  return (
+    
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: "space-between" }}>
+      <Text style={{ fontSize: 28}} >Man Hinh Chinh</Text>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: "center" }}>
+      <Button 
+        title="Go to ToDoList"
+        onPress={() => navigation.navigate('ToDoList')}
+      />
+
+            <Button 
+        title="Go to Cat Img"
+        onPress={() => navigation.navigate('CatImg')}
+      />
+      
+      <Button
+        title="Go to Details"
+        onPress={() => navigation.navigate('Details')}
+      />
+      </View>
+    </View>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+
+function App() {
+  
+  return (
+
+    
+    
+    <NavigationContainer>
+
+        <Stack.Navigator initialRouteName="Splash">
+        <Stack.Screen name="Splash" component={SplashScreen} options={{
+          headerShown: false,
+        }} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        
+        <Stack.Screen name="ToDoList" component={TodoList} 
+        options={{
+          headerShown: false,
+        }} 
+        />
+
+        <Stack.Screen name="CatImg" component={CatImg} 
+        options={{
+          headerShown: false,
+        }} 
+        />  
+        
+        <Stack.Screen name="Details" component={DetailsScreen} />
+      </Stack.Navigator>
+
+    </NavigationContainer>
+      
+  );
+}
+
+export default App;
+

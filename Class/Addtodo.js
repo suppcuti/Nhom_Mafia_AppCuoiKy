@@ -16,7 +16,11 @@ export default function AddTodo({submit}){
             placeholder="New Todo..."
             onChangeText={changeH}
             />
-            <Button onPress={() => submit(text) } title='add todo' color='coral' />
+            <Button 
+            onPress={() => submit(text) }
+             title='add todo' 
+             color='coral'
+              />
         </View>
     )
 }

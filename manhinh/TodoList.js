@@ -1,16 +1,16 @@
 import React,{useState, useEffect}  from "react";
 import {Text, View, StyleSheet, FlatList, Alert, TouchableWithoutFeedback,Keyboard } from "react-native";
-import  Header  from './Class/Header';
-import TodoItems from "./Class/TodoItems";
-import AddTodo from "./Class/Addtodo";
-import generateColor from "./Class/RandomColor";
+import  Header  from '../Class/Header';
+import TodoItems from "../Class/TodoItems";
+import AddTodo from "../Class/Addtodo";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import ThemeSwitch from "../Class/ThemeSwitch";
 
 export default function TodoList() {
     const  [todos,setTodos] = useState([
 
     ]);
+let i =0;
 
 const Press = (key) =>{
   setTodos((prevTodos) =>{
@@ -40,18 +40,20 @@ const getData = async () => {
 }
 
 
-
+let k = (Math.random().toString());
 
 
 const submit =(text) =>{  
   if(text.length >2) {
     setTodos((prevTodos) =>{
       return[
-        {text: text, key: Math.random().toString()},
+        {text: text, key: k },
         ...prevTodos
       ]
     });
     storeData();
+    console.log('Text : ',text);
+    console.log('Key  : ',k)
   } else {
     Alert.alert('Haiz', 'Luoi du vay 1 viec can lam phai nhieu hon 2 chu cai chu',[
       {text: 'Hieu Roi', onPress:() =>console.log('Alert Closed')}
@@ -66,12 +68,12 @@ const submit =(text) =>{
     //<Sanbox/>
     useEffect(() => {
       getData()
-    }, []),
+    },),
     <TouchableWithoutFeedback onPress={() =>{
       Keyboard.dismiss();
     }}
     onPressIn={() => {
-      console.log(generateColor());
+      console.log('Hic',i++);
     }}
     >
     <View style={styles.container}>
@@ -88,7 +90,7 @@ const submit =(text) =>{
         </View>
 
       </View>
-
+            
     </View>
   </TouchableWithoutFeedback>
   )

@@ -23,7 +23,6 @@ export default function CatImg() {
       });
   }
     console.log('Cat Url: ', catUrl);
-    console.log("'" + catUrl + "'");
 
 
   return(

@@ -19,9 +19,11 @@ export default function ThemeSwitch() {
  const styles = StyleSheet.create({
    container: {
      flex: 1,
-     backgroundColor: `${isEnabled ? '#000' : generateColor()}`,
-     alignItems: 'flex-end',
-     justifyContent: 'flex-end',
+     backgroundColor: `${isEnabled ? '#000' : '#fff0'}`,
+   },
+   switch: {
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
    },
  });
  
@@ -50,16 +52,18 @@ export default function ThemeSwitch() {
    } else {
      setIsEnabled(false);
      setTheme('Random Color');
-     console.log(generateColor())
+     console.log(' Ma mau moi : ',generateColor())
    };
  };
  
  return (
    <View style={styles.container}>
+     <View style={styles.switch}>
      <Switch
        onValueChange={onChangeHandler}
        value={isEnabled}
      />
+     </View>
    </View>
  );
 };

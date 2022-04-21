@@ -24,7 +24,7 @@ function SplashScreen({navigation}) {
       autoPlay 
       loop ={false}
       onAnimationFinish = {() => navigation.navigate('Home')}
-      speed ={3}
+      speed ={2}
       />
 
     </View>
@@ -59,13 +59,12 @@ function HomeScreen({ navigation }) {
 
     </View>
 
-      <Themeswitch/>
+      <Themeswitch style={{}}/>
     </View>
 
 
     );
 }
-
 const Stack = createNativeStackNavigator();
 
 function App() {

@@ -2,12 +2,14 @@ import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import TodoList from './manhinh/TodoList';
 import LottieView from 'lottie-react-native';
+import TodoList from './manhinh/TodoList';
 import CatImg from './manhinh/CatImg';
 import Themeswitch from './Class/ThemeSwitch';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import DetailsScreen from './manhinh/Detail';
+import Score from './Class/score';
+
 
 function SplashScreen({navigation}) {
   return(
@@ -41,6 +43,9 @@ function HomeScreen({ navigation }) {
     size={60}
     onPress={() => navigation.navigate('ToDoList')}
   >
+    <Text style={{ fontFamily: 'Arial', fontSize: 15,color:'white',textAlign:'justify',justifyContent:'flex-end' }}>
+      TodoList
+    </Text>
   </Icon.Button>
 
     <Icon.Button 
@@ -48,17 +53,24 @@ function HomeScreen({ navigation }) {
     backgroundColor='black'
     size={60}
     onPress={() => navigation.navigate('CatImg')}
-    ></Icon.Button>
+    >
+    <Text style={{ fontFamily: 'Arial', fontSize: 15,color:'white',textAlign:'justify',justifyContent:'flex-end' }}>
+      Cat Img
+    </Text>
+    </Icon.Button>
 
     <Icon.Button 
     name="card-account-details-star"
     backgroundColor='black'
     size={60}
     onPress={() => navigation.navigate('Details')}
-    ></Icon.Button>
+    >
+    <Text style={{ fontFamily: 'Arial', fontSize: 15,color:'white',textAlign:'justify',justifyContent:'flex-end' }}>
+      Detail
+    </Text>
+    </Icon.Button>
 
     </View>
-
       <Themeswitch style={{}}/>
     </View>
 

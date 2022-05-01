@@ -3,6 +3,10 @@ import {Text,View, StyleSheet, TextInput, Button} from "react-native";
 
 export default function AddTodo({submit}){
     const [text, setText] =useState('');
+    
+    const cleartext = (val) =>{
+        setText('');
+    }
 
     const  changeH = (val) =>{
         setText(val);
@@ -13,11 +17,12 @@ export default function AddTodo({submit}){
         <View> 
             <TextInput
             style={styles.input}
+            value={text}
             placeholder="New Todo..."
             onChangeText={changeH}
             />
             <Button 
-            onPress={() => submit(text) }
+            onPress={() => {submit(text), cleartext(text)} }
              title='add todo' 
              color='coral'
               />

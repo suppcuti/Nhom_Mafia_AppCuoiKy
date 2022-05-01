@@ -4,12 +4,12 @@ import  Header  from '../Class/Header';
 import TodoItems from "../Class/TodoItems";
 import AddTodo from "../Class/Addtodo";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import ThemeSwitch from "../Class/ThemeSwitch";
 
 export default function TodoList() {
     const  [todos,setTodos] = useState([
 
     ]);
+    
 let i =0;
 
 const Press = (key) =>{
@@ -18,25 +18,16 @@ const Press = (key) =>{
   });
 }
 
-const storeData = async (text) => {
-  try {
-    await AsyncStorage.setItem(key, text)
-  } catch (e) {
-    // saving error
-  }
-  console.log('Store')
+const storeData = async () => {
+  const stringifiedArray = JSON.stringify(todos)
+  await AsyncStorage.setItem('@user', stringifiedArray)
 }
 
 const getData = async () => {
-  try {
-    const text = await AsyncStorage.getItem(key)
-    if(text !== null) {
-      // value previously stored
-    }
-  } catch(e) {
-    // error reading value
+  let stringifiedArray =  await AsyncStorage.getItem('@user');
+  if(stringifiedArray){
+    setTodos(JSON.parse(stringifiedArray));
   }
-  console.log('Load Stored Data')
 }
 
 
@@ -52,8 +43,7 @@ const submit =(text) =>{
       ]
     });
     storeData();
-    console.log('Text : ',text);
-    console.log('Key  : ',k)
+    console.log('Stored Data')
   } else {
     Alert.alert('Haiz', 'Luoi du vay 1 viec can lam phai nhieu hon 2 chu cai chu',[
       {text: 'Hieu Roi', onPress:() =>console.log('Alert Closed')}
@@ -65,15 +55,14 @@ const submit =(text) =>{
 
 
   return (
-    //<Sanbox/>
     useEffect(() => {
-      getData()
-    },),
+      getData();
+ }, [] ),
     <TouchableWithoutFeedback onPress={() =>{
       Keyboard.dismiss();
     }}
     onPressIn={() => {
-      console.log('Hic',i++);
+
     }}
     >
     <View style={styles.container}>

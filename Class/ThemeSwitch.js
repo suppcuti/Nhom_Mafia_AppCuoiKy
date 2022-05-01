@@ -51,8 +51,7 @@ export default function ThemeSwitch() {
      setTheme('light');
    } else {
      setIsEnabled(false);
-     setTheme('Random Color');
-     console.log(' Ma mau moi : ',generateColor())
+     setTheme('Dark');
    };
  };
  

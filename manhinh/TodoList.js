@@ -6,9 +6,7 @@ import AddTodo from "../Class/Addtodo";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function TodoList() {
-    const  [todos,setTodos] = useState([
-
-    ]);
+    const  [todos,setTodos] = useState([]);
     
 let i =0;
 
@@ -16,11 +14,19 @@ const Press = (key) =>{
   setTodos((prevTodos) =>{
       return prevTodos.filter(todo => todo.key !=key);
   });
+  storeData();
 }
 
-const storeData = async () => {
-  const stringifiedArray = JSON.stringify(todos)
-  await AsyncStorage.setItem('@user', stringifiedArray)
+
+
+const storeData = async (value) => {
+  try {
+    const jsonValue = JSON.stringify(todos)
+    await AsyncStorage.setItem('@user', jsonValue)
+    console.log('Data Stored')
+  } catch (e) {
+
+  }
 }
 
 const getData = async () => {
@@ -42,8 +48,6 @@ const submit =(text) =>{
         ...prevTodos
       ]
     });
-    storeData();
-    console.log('Stored Data')
   } else {
     Alert.alert('Haiz', 'Luoi du vay 1 viec can lam phai nhieu hon 2 chu cai chu',[
       {text: 'Hieu Roi', onPress:() =>console.log('Alert Closed')}
@@ -55,9 +59,15 @@ const submit =(text) =>{
 
 
   return (
+
     useEffect(() => {
       getData();
  }, [] ),
+    useEffect(() => {
+     storeData()
+}, [todos]),
+
+
     <TouchableWithoutFeedback onPress={() =>{
       Keyboard.dismiss();
     }}
@@ -68,7 +78,7 @@ const submit =(text) =>{
     <View style={styles.container}>
       <Header/>
         <View style={styles.conten}>
-      <AddTodo submit={submit}  />
+      <AddTodo submit={submit} storeData={storeData} />
        <View style={styles.list}>
           <FlatList 
             data={todos}

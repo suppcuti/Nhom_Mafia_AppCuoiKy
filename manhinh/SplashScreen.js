@@ -1,10 +1,11 @@
 import { View } from 'react-native';
-import react from 'react';
 import LottieView from 'lottie-react-native';
 import { useNavigation } from '@react-navigation/native';
+import * as React from 'react'
 
 
-function SplashScreen() {
+export default function SplashScreen() {
+  const navigation = useNavigation();
 
     return(
 
@@ -24,8 +25,8 @@ function SplashScreen() {
         onAnimationFinish = {() => navigation.navigate('Home')}
         speed ={2}
         />
+
       </View>
     );
-  };
+  }
 
-export default SplashScreen;

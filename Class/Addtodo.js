@@ -7,11 +7,11 @@ export default function AddTodo({submit}){
     const cleartext = (val) =>{
         setText('');
     }
+    
 
     const  changeH = (val) =>{
         setText(val);
     }
-
 
     return(
         <View> 
@@ -21,11 +21,14 @@ export default function AddTodo({submit}){
             placeholder="New Todo..."
             onChangeText={changeH}
             />
+
             <Button 
-            onPress={() => {submit(text), cleartext(text)} }
+            onPress={() => {submit(text), cleartext(text)}  }
              title='add todo' 
              color='coral'
               />
+
+
         </View>
     )
 }

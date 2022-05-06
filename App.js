@@ -6,7 +6,7 @@ import CatImg from './manhinh/CatImg';
 import DetailsScreen from './manhinh/Detail';
 import SplashScreen from './manhinh/SplashScreen';
 import HomeScreen from './manhinh/HomeScreen';
-
+import Game2048 from './manhinh/2048';
 
 
 const Stack = createNativeStackNavigator();
@@ -37,7 +37,13 @@ function App() {
         options={{
           headerShown: false,
         }} 
-        />  
+        /> 
+         
+        <Stack.Screen name="2048" component={Game2048} 
+        options={{
+          headerShown: false,
+        }} 
+        /> 
         
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>

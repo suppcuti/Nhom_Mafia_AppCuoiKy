@@ -11,6 +11,4 @@ Thành viên:
 
 Đề tài giữa kỳ:2 React Native Components (+demo)
 
-Video : https://youtu.be/2oZVrU5ngIU
-
 APK   : https://drive.google.com/file/d/1m0zsXRxCQyQGD1fmtSgpwTUKvMxWxf9k/view?usp=sharing
